@@ -19,11 +19,12 @@ namespace ApiPost.Controllers
         public ActionResult Index()
         {
             var foo = new Foo();
-            foo.Bar = "barr";
+            foo.Bar = "ApiPostSln";
 
             var response = PostAsync<Teste>(foo).Result;
 
             ViewBag.ConteudoDoResponse = response.Conteudo;
+            ViewBag.Enviado = response.Enviado;
 
             return View();
         }
@@ -33,7 +34,8 @@ namespace ApiPost.Controllers
         {
             HttpClient httpClient = new HttpClient();
 
-            var url = "http://localhost:41126/api/values";
+            var url = "https://apinodejsteste.herokuapp.com/api/teste";
+            //var url = "http://localhost:3001/api/teste";
 
             try
             {
@@ -72,5 +74,6 @@ namespace ApiPost.Controllers
     public class Teste
     {
         public string Conteudo { get; set; }
+        public string Enviado { get; set; }
     }
 }
